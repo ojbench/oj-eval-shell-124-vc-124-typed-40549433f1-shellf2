@@ -1,43 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct FastInput {
-    static const int BUFSIZE = 1 << 20;
-    int idx = 0, size = 0;
-    char buf[BUFSIZE];
-
-    inline char getch() {
-        if (idx >= size) {
-            size = (int)fread(buf, 1, BUFSIZE, stdin);
-            idx = 0;
-            if (size == 0) return 0;
-        }
-        return buf[idx++];
-    }
-
-    template <class T>
-    bool readInt(T &out) {
-        char c = getch();
-        if (!c) return false;
-        while (c != '-' && (c < '0' || c > '9')) {
-            c = getch();
-            if (!c) return false;
-        }
-        T sign = 1;
-        if (c == '-') {
-            sign = -1;
-            c = getch();
-        }
-        T val = 0;
-        while (c >= '0' && c <= '9') {
-            val = val * 10 + (c - '0');
-            c = getch();
-        }
-        out = val * sign;
-        return true;
-    }
-};
-
 struct SegTree {
     int n = 0;
     vector<long long> mn, lazy;
@@ -90,14 +53,11 @@ struct SegTree {
 };
 
 int main() {
-    FastInput in;
     int x = 0, p = 0;
     long long k = 0;
-    if (!in.readInt(x)) return 0;
-    in.readInt(k);
-    in.readInt(p);
+    if (scanf("%d%lld%d", &x, &k, &p) != 3) return 0;
 
-    int edges = max(0, x - 1);
+    const int edges = max(0, x - 1);
     SegTree st;
     if (edges > 0) st.init(edges, k);
 
@@ -107,9 +67,7 @@ int main() {
     for (int i = 0; i < p; ++i) {
         int u = 0, v = 0;
         long long n = 0;
-        in.readInt(u);
-        in.readInt(v);
-        in.readInt(n);
+        if (scanf("%d%d%lld", &u, &v, &n) != 3) return 0;
 
         if (u > v) swap(u, v);
 
@@ -119,10 +77,8 @@ int main() {
             continue;
         }
 
-        int l = u;
-        int r = v - 1;
-        if (l < 1) l = 1;
-        if (r > edges) r = edges;
+        int l = max(1, u);
+        int r = min(edges, v - 1);
         if (l > r) {
             out.push_back('T');
             out.push_back('\n');
