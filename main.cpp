@@ -91,8 +91,8 @@ struct SegTree {
 
 int main() {
     FastInput in;
-    int x, p;
-    long long k;
+    int x = 0, p = 0;
+    long long k = 0;
     if (!in.readInt(x)) return 0;
     in.readInt(k);
     in.readInt(p);
@@ -105,8 +105,8 @@ int main() {
     out.reserve((size_t)p * 2);
 
     for (int i = 0; i < p; ++i) {
-        int u, v;
-        long long n;
+        int u = 0, v = 0;
+        long long n = 0;
         in.readInt(u);
         in.readInt(v);
         in.readInt(n);
