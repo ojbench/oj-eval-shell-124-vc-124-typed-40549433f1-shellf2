@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <cstdint>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <climits>
 using namespace std;
 
 struct SegTree {
