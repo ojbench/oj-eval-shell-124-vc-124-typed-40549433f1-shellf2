@@ -94,6 +94,6 @@ int main() {
         out.push_back('\n');
     }
 
-    fwrite(out.data(), 1, out.size(), stdout);
+    fputs(out.c_str(), stdout);
     return 0;
 }
