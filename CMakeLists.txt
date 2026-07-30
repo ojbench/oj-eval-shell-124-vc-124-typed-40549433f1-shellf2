@@ -9,6 +9,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 add_executable(code main.cpp)
+set_target_properties(code PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}")
 
 if (MSVC)
   target_compile_options(code PRIVATE /O2)
